@@ -6,7 +6,8 @@ import java.util.Properties;
 
 public final class PropertyManager {
 
-    Properties properties = new Properties();
+    private LoggerWrap logger = LoggerWrap.getLogger();
+    private Properties properties = new Properties();
 
     public PropertyManager(String resourceName) {
         properties = appendResource(properties, resourceName);
@@ -26,7 +27,7 @@ public final class PropertyManager {
                 ioExc.printStackTrace();
             }
         } else {
-            System.err.println(String.format("Resource \"%1$s\" could not be found", propsResource));
+            logger.logInfo(String.format("Resource \"%1$s\" could not be found", propsResource));
         }
         return props;
     }
