@@ -8,13 +8,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public final class DriverFactory {
+public abstract class DriverFactory {
 
     private static PropertyManager props = new PropertyManager("selenium.properties");
     private static boolean isRemote = Boolean.parseBoolean(props.getProperty("remoteDriver"));
 
     public static RemoteWebDriver getDriver() {
-        RemoteWebDriver driver = null;
+        RemoteWebDriver driver;
 
         if (isRemote) {
             driver = new RemoteWebDriver(getRemoteURL(), DesiredCapabilities.firefox());
